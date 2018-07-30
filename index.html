@@ -20,30 +20,30 @@
 var url = new URL(url_string);
 var c = url.searchParams.get("code");
     if (c){
-      post('https://github.com/login/oauth/access_token/', {'client_id': '8681b227337ec96cd168', 'client_secret': '6aaf90fef31d8586da40f3eb90cbc478a1e8b948', 'code': c});
+      key = post('https://github.com/login/oauth/access_token/', {'client_id': '8681b227337ec96cd168', 'client_secret': '6aaf90fef31d8586da40f3eb90cbc478a1e8b948', 'code': c});
     }
     function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
 
     // The rest of this code assumes you are not using a library.
     // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
+    var form = new FormData();
 
     for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
+         formData.append(key,params[key]);  
         }
-    }
+    
+      var xhr = new XMLHttpRequest();  
+    xhr.open("POST", path);  
+    xhr.send(method); 
+    xhr.onreadystatechange = function() 
+        { 
+            // If the request completed, close the extension popup
+            if (req.readyState == 4)
+                if (req.status == 200)
+                 return xhr.responseText; 
+        };
 
-    document.body.appendChild(form);
-    form.submit();
 }
     </script
 </html>
