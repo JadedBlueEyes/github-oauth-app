@@ -1,52 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="main.css">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>PortaNote</title>
-</head>
-
-<body>
-  <div id="app">
     <button id="login" onclick="window.location.href = 'https://github.com/login/oauth/authorize?client_id=8681b227337ec96cd168&redirect_uri=https://derpmarine168.github.io/github-oauth-app/index.html&scope=read:user'">login w/ github</button>
-  </div>
-</body>
+  </div>	  </div>
+</body>	</body>
   <script>
-    serialize = function(obj) {
-  var str = [];
-  for (var p in obj)
-    if (obj.hasOwnProperty(p)) {
-      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-    }
-  return str.join("&");
-}
-
+    
     var url_string = window.location.href; 
 var url = new URL(url_string);
 var c = url.searchParams.get("code");
     if (c){
-      key = post('https://github.com/login/oauth/access_token/', {'client_id': '8681b227337ec96cd168', 'client_secret': '6aaf90fef31d8586da40f3eb90cbc478a1e8b948', 'code': c});
+      post('https://github.com/login/oauth/access_token/', {'client_id': '8681b227337ec96cd168', 'client_secret': '6aaf90fef31d8586da40f3eb90cbc478a1e8b948', 'code': c, 'redirect_uri': 'https://derpmarine168.github.io/github-oauth-app/index.html'});
     }
     function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
+     // The rest of this code assumes you are not using a library.
     // It can be made less wordy if you use one.
-    let s = serialize(params)
-      var xhr = new XMLHttpRequest();  
-    xhr.open("POST", path + s);  
-    xhr.send(method); 
-    xhr.onreadystatechange = function() 
-        { 
-            // If the request completed, close the extension popup
-            if (req.readyState == 4)
-                if (req.status == 200)
-                 return xhr.responseText; 
-        };
-
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+     for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+             form.appendChild(hiddenField);
+        }
+    }
+     document.body.appendChild(form);
+    form.submit();
 }
     </script
-</html>
+</html>	</html>
