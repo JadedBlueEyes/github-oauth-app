@@ -30,7 +30,7 @@ var c = url.searchParams.get("code");
     var form = new FormData();
 
     for(var key in params) {
-         formData.append(key,params[key]);  
+         form.append(key,params[key]);  
         }
     
       var xhr = new XMLHttpRequest();  
