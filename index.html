@@ -15,7 +15,15 @@
   </div>
 </body>
   <script>
-    
+    serialize = function(obj) {
+  var str = [];
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+  return str.join("&");
+}
+
     var url_string = window.location.href; 
 var url = new URL(url_string);
 var c = url.searchParams.get("code");
@@ -27,14 +35,9 @@ var c = url.searchParams.get("code");
 
     // The rest of this code assumes you are not using a library.
     // It can be made less wordy if you use one.
-    var form = new FormData();
-
-    for(var key in params) {
-         form.append(key,params[key]);  
-        }
-    
+    let s = serialize(params)
       var xhr = new XMLHttpRequest();  
-    xhr.open("POST", path);  
+    xhr.open("POST", path + s);  
     xhr.send(method); 
     xhr.onreadystatechange = function() 
         { 
