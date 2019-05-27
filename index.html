@@ -9,7 +9,7 @@
 </head>
  <body>
   <div id="app">
-<button onclick="window.location.href = 'https://github.com/login/oauth/authorize?client_id=8681b227337ec96cd168&redirect_uri=https://derpmarine168.github.io/github-oauth-app/index.html&scope=read:user'">login w/ github</button>
+<button onclick="window.location.href = 'https://github.com/login/oauth/authorize?client_id=8681b227337ec96cd168&redirect_uri=https://JoelEllis.github.io/github-oauth-app/index.html&scope=read:user'">login w/ github</button>
       <div id="login" > </div></div>	  </div>
 </body>	</body>
   <script>
@@ -25,7 +25,7 @@
 var url = new URL(url_string);
 var c = url.searchParams.get("code");
     if (c){
-      document.getElementById('login').innerText = 'https://github.com/login/oauth/access_token/?' + serialize({'client_id': '8681b227337ec96cd168', 'client_secret': '6aaf90fef31d8586da40f3eb90cbc478a1e8b948', 'code': c, 'redirect_uri': 'https://derpmarine168.github.io/github-oauth-app/index.html'});
+      document.getElementById('login').innerText = 'https://github.com/login/oauth/access_token/?' + serialize({'client_id': '8681b227337ec96cd168', 'client_secret': '6aaf90fef31d8586da40f3eb90cbc478a1e8b948', 'code': c, 'redirect_uri': 'https://JoelEllis.github.io/github-oauth-app/index.html'});
     }
     </script
 </html>
